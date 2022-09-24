@@ -5,10 +5,10 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import net.javaguides.sms.entity.AppUser;
 import net.javaguides.sms.service.CustomUserDetails;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import javax.swing.table.DefaultTableCellRenderer;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +21,8 @@ public class jwtUtility implements Serializable {
     public  final long  jwt_Token_Validity = 5*60*60;
     @Value("${jwt.secret}")
     private String secretKey;
+
+
 
     // Getting  claims (details) from the Jwt Token
     public String getUserNameFromToken(String token){
@@ -39,7 +41,6 @@ public class jwtUtility implements Serializable {
     // code to generate jwtToken
     public String generateToken(CustomUserDetails customUserDetails){
         Map<String, Object> claims = new HashMap<>();
-        claims.put("registrationNumber", customUserDetails.getRegistrationNumber());
         claims.put("email", customUserDetails.getEmail());
         claims.put("phoneNumber", customUserDetails.getPhoneNumber());
         return generatedToken(claims, customUserDetails.getUsername());

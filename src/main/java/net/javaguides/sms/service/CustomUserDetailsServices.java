@@ -19,6 +19,6 @@ public class CustomUserDetailsServices implements UserDetailsService {
         if(appUser == null){
             throw new UsernameNotFoundException("That user does not exist");
         }
-        return null;
+        return new CustomUserDetails(appUser);
     }
 }

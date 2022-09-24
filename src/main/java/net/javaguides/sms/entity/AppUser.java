@@ -3,7 +3,6 @@ package net.javaguides.sms.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,7 +19,6 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public  Long appUserId;
     @NotNull
-    @UniqueElements
     public  String registrationNumber;
     public  String username;
     @Email
@@ -31,4 +29,7 @@ public class AppUser {
     @NotNull
     public  String confirmPassword;
     public boolean enabled = false;
+
+    public void password(String encode) {
+    }
 }
